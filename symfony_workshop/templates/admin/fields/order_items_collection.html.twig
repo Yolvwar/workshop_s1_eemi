@@ -1,0 +1,17 @@
+{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/admin/fields/order_items_collection.html.twig #}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for orderItem in field.value %}
+            <tr>
+                <td>{{ orderItem.product.name }}</td>
+                <td>{{ orderItem.quantity }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
