@@ -1,0 +1,23 @@
+{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/clientprofile/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <h1>Profile</h1>
+
+    <h2>Informations personnelles</h2>
+    <p>Nom : {{ user.name }}</p>
+    <p>Prénom : {{ user.firstname }}</p>
+    <p>Email : {{ user.email }}</p>
+    <p>Adresse de facturation : {{ user.adress }}</p>
+    <p>Adresse de livraison : {{ user.town }}</p>
+    <a href="{{ path('clientprofile_edit') }}">Modifier les informations personnelles</a>
+
+    <h2>Commandes passées</h2>
+    <ul>
+        {% for order in orders %}
+            <li>Commande #{{ order.id }} passée le {{ order.orderedAt|date('d/m/Y') }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
