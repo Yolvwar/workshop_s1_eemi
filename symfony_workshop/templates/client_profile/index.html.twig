@@ -1,23 +1,48 @@
-{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/clientprofile/index.html.twig #}
+{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/client_profile/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Profile{% endblock %}
 
 {% block body %}
-    <h1>Profile</h1>
+    <h1 class="m-3">Profile</h1>
 
-    <h2>Informations personnelles</h2>
-    <p>Nom : {{ user.name }}</p>
-    <p>Prénom : {{ user.firstname }}</p>
-    <p>Email : {{ user.email }}</p>
-    <p>Adresse de facturation : {{ user.adress }}</p>
-    <p>Adresse de livraison : {{ user.town }}</p>
-    <a href="{{ path('clientprofile_edit') }}">Modifier les informations personnelles</a>
+    <div class="row p-4">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="bi bi-person-badge"></i> Informations personnelles
+                </div>
+                <div class="card-body">
+                    <p><i class="bi bi-person"></i> Nom : {{ user.name }}</p>
+                    <p><i class="bi bi-person"></i> Prénom : {{ user.firstname }}</p>
+                    <p><i class="bi bi-envelope"></i> Email : {{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="bi bi-geo-alt"></i> Adresses
+                </div>
+                <div class="card-body">
+                    <p><i class="bi bi-house"></i> Adresse : {{ user.adress }}, {{ user.town }}, {{ user.zipCode }}</p>
+                    <p><i class="bi bi-truck"></i> Adresse de livraison : {{ user.shippingAddress }}</p>
+                    <p><i class="bi bi-file-earmark-text"></i> Adresse de facturation : {{ user.billingAddress }}</p>
+                </div>
+            </div>
+        </div>
 
+         <a href="{{ path('clientprofile_edit') }}" class="btn btn-primary text-center " style="max-width: 500px;">
+        <i class="bi bi-pencil"></i> Modifier les informations personnelles
+    </a>
+    </div>
+
+    <div class="row p-4">
     <h2>Commandes passées</h2>
     <ul>
         {% for order in orders %}
             <li>Commande #{{ order.id }} passée le {{ order.orderedAt|date('d/m/Y') }}</li>
         {% endfor %}
     </ul>
+    </div>
 {% endblock %}

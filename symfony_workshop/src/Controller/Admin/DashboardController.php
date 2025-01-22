@@ -60,5 +60,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Regles', 'fas fa-book', Rules::class);
         yield MenuItem::linkToCrud('Packs', 'fas fa-box', Card::class);
         yield MenuItem::linkToCrud('Extensions', 'fas fa-box-open', Card::class);
+
+        yield MenuItem::section('Plus');
+        yield MenuItem::linkToUrl('Retour au site', 'fas fa-door-open', '/');
     }
 }

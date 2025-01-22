@@ -21,6 +21,12 @@ class Products
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $affiliateLink = null;
+
     /**
      * @var Collection<int, Order>
      */

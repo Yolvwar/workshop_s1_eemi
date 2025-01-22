@@ -39,6 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $shipping_address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $billing_address = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -191,6 +197,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getShippingAddress(): ?string
+    {
+        return $this->shipping_address;
+    }
+
+    public function setShippingAddress(?string $shipping_address): static
+    {
+        $this->shipping_address = $shipping_address;
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?string
+    {
+        return $this->billing_address;
+    }
+
+    public function setBillingAddress(?string $billing_address): static
+    {
+        $this->billing_address = $billing_address;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Order>
