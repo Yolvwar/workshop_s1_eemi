@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Card;
 use App\Entity\Order;
 use App\Entity\Products;
+use App\Entity\Rules;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -45,9 +47,18 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section('Gestion application');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Commandes', 'fas fa-cart-flatbed', Order::class);
-        yield MenuItem::linkToCrud('Products', 'fas fa-boxes-stacked', Products::class);
+        yield MenuItem::linkToCrud('Produits', 'fas fa-boxes-stacked', Products::class);
         yield MenuItem::linkToCrud('Pages', 'fas fa-window-restore', Products::class);
+
+        yield MenuItem::section('Gestion du jeu');
+        yield MenuItem::linkToCrud('Cartes', 'fas fa-id-card', Card::class);
+        yield MenuItem::linkToCrud('Regles', 'fas fa-book', Rules::class);
+        yield MenuItem::linkToCrud('Packs', 'fas fa-box', Card::class);
+        yield MenuItem::linkToCrud('Extensions', 'fas fa-box-open', Card::class);
     }
 }

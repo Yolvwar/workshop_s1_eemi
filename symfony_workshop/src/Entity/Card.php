@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\RulesRepository;
+use App\Repository\CardRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RulesRepository::class)]
-class Rules
+#[ORM\Entity(repositoryClass: CardRepository::class)]
+class Card
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
