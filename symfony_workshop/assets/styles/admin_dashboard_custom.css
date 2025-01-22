@@ -1,0 +1,7 @@
+.sidebar-nav .nav-link {
+  font-size: 1.2rem; /* Augmente la taille du texte */
+}
+
+.sidebar-nav .nav-link .fa, .sidebar-nav .nav-link .fas {
+  font-size: 1.5rem; /* Augmente la taille des icônes */
+}
