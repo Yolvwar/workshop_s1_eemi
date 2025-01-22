@@ -1,0 +1,13 @@
+{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/clientprofile/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les informations personnelles{% endblock %}
+
+{% block body %}
+    <h1>Modifier les informations personnelles</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit">Enregistrer les modifications</button>
+    {{ form_end(form) }}
+{% endblock %}
