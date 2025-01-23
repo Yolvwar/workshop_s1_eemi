@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des cartes{% endblock %}
+{% block title %}Hello CardsController!{% endblock %}
 
 {% block body %}
-    <h1>Liste des cartes</h1>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
     <ul>
-        {% for card in cards %}
-            <li>
-                <a href="{{ path('cards_show', {id: card.id}) }}">{{ card.name }}</a>
-            </li>
-        {% endfor %}
+        <li>Your controller at <code>C:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/src/Controller/CardsController.php</code></li>
+        <li>Your template at <code>C:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/cards/index.html.twig</code></li>
     </ul>
+</div>
 {% endblock %}
