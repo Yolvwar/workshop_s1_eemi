@@ -5,45 +5,13 @@
 {% block body %}
 <div class="container">
     <h1 class="text-center">Les Règles Du Jeu</h1>
-    <h2>Déroulement d’une partie</h2>
-<ul><li>Les joueurs désignent ou tirent au sort le capitaine, il dirigera le début de la partie et jouera également.</li>
-<li>Le capitaine distribue à chaque joueur une carte rôle et une carte bonus. Chaque joueur regarde
-discrètement son rôle et sa carte bonus puis repose ses cartes face cachées devant lui.</li>
-<li>Le capitaine demande aux joueurs de fermer les yeux. Tous les joueurs baissent la tête et ferment
-les yeux (le capitaine aussi). Puis il appelle les pirates et à la sirène à ouvrir les yeux (le capitaine
-ouvrira les yeux s’il a un de ses rôles) et leur laisse suffisamment de temps pour se regarder.</li>
-Il demande à tout le monde de fermer les yeux.
-Et pour finir il va demander à tout le monde de réouvrir les yeux
-Attention : Vous ne fermerez plus les yeux par la suite, retenez bien qui a ouvert les yeux.
-    <h2>Mise en place</h2>
-    Le capitaine choisi un équipage de trois personnes (dont il peut faire parti), il faut maintenant donner
-une carte poison et une carte île à chaque personne de l’équipage.
-Chaque participant choisit la carte qu’il veut poser et la met au milieu en face cachée, il place la carte
-non utilisée devant lui, toujours en face cachée.
-Un joueur mélange les cartes mises en jeu et les retournes.
-S’il y a au moins une carte poison les pirates marquent un point, s’il y a trois cartes îles c’est les marins et la sirène qui remportent le point.
-Le résultat étant connu, il faut récupérer toutes les cartes en face cachée, les mélanger et les redistribuer lors du prochain voyage.
-    <h2>Premier voyage</h2>
-    C’est le joueur suivant, dans le sens des aiguilles d’une montre, qui doit à nouveau choisir un équipage
-de trois personnes.
-ATTENTION ! A partir de ce tour et jusqu’à la fin de la partie il y aura un vote lorsque trois personnes
-seront proposées. (La personne qui propose l’équipage est forcément pour)
-Si la majorité des joueurs (ou au moins la moitié en cas de joueurs pair) est contre, l’équipage ne part
-pas et la personne peut proposer un nouvel équipage, qui sera différent d’au moins une personne.
-Si l’équipage est à nouveau refusé, la personne qui les a choisis passera son tour.
-Vous pouvez maintenant réitérer ce schéma jusqu’à la victoire d’une équipe, sans oublié d’utiliser vos
-cartes bonus à bon escient.
-    <h2>Suite de la partie</h2>
-    Une équipe gagne dès qu’elle remporte dix manches.
-Si les marins gagnent, la Sirène gagne avec eux. Si les pirates gagnent, ils doivent voter afin d’identifier la
-sirène, si la majorité se trompent la sirène gagne la partie seule.
     <div class="row justify-content-center">
-        <div class="col-md-6 my-3">
+        <div class="col-md-9 my-3">
             <div class="card">
                 <div class="card-body">
         {% for rule in rules %}
                     <h2 class="card-title">{{ rule.name }} :</h2>
-                    <p class="card-text">{{ rule.description }}</p>
+                    <p>{{ rule.description }}</p>
         {% endfor %}
                 </div>
             </div>
