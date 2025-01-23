@@ -1,9 +1,0 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ cards.name }}{% endblock %}
-
-{% block body %}
-    <h1>{{ cards.name }}</h1>
-    <p> {{cards.description}} </p>
-    <a href="{{ path('cards') }}">Retour à la liste des cartes</a>
-{% endblock %}
