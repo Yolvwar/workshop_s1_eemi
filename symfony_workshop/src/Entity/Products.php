@@ -67,6 +67,30 @@ class Products
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAffiliateLink(): ?string
+    {
+        return $this->affiliateLink;
+    }
+
+    public function setAffiliateLink(?string $affiliateLink): self
+    {
+        $this->affiliateLink = $affiliateLink;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Order>
      */

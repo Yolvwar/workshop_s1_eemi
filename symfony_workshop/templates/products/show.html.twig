@@ -6,5 +6,6 @@
     <h1>{{ products.name }}</h1>
     <p> products.description </p>
     <p>Prix : {{ products.price }} €</p>
+    <a href="{{ path('app_cart_add', {id: products.id}) }}">Ajouter au panier</a>
     <a href="{{ path('products') }}">Retour à la liste des produits</a>
 {% endblock %}
