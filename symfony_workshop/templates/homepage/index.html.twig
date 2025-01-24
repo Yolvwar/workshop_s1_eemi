@@ -3,38 +3,51 @@
 {% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
-<section  style="background:white;" style="background:white;">
-    <div class="d-flex">
-        <div class="">
-            <img src={{asset('images/11.png')}}></img>
+<section style="background:white;">
+    <div class="d-flex py-3">
+        <div style="flex: 0 0 40%;"> <!-- Réduit la largeur à 40% -->
+            <img src="{{asset('images/11.png')}}" class="w-100">
         </div>
-        <div class="bg-danger">
-            <img src={{asset('images/10.png')}}></img>
-        </div
+        <div class="bg-secondary" style="flex: 0 0 40%;"> <!-- Réduit la largeur à 40% -->
+            <img src="{{asset('images/10.png')}}" class="w-100">
+        </div>
     </div>
-    </div>
-    <h1 style="color: #00A1DE; font-weight: bold;">Plongez dans une aventure collective sans élimination</h1>
+    <h1 class="text-center" style="color: #00A1DE; font-weight: bold;">Plongez dans une aventure collective sans élimination</h1>
 </section>
-<section  style="background:white;">
-<h1>Présentation du jeu</h1>
-<p>ICO est un jeu de stratégie et de déduction sociale qui promet des parties riches en rebondissements et en interactions. Chaque joueur joue un rôle actif, et les mécanismes permettent des alliances et des retournements de situation jusqu'à la dernière seconde !</p>
-<p>Caractéristiques du jeu :</p>
-<ul>
-<li>Joueurs : 4 à 10</li>
-<li>Durée moyenne : 30 à 45 minutes</li>
-<li>Âge recommandé : 12 ans et plus</li>
-<li>Type de jeu : Stratégie & Déduction</li>
-</ul>
+<section  style="background:white;" class="mx-3">
+<div class="d-flex" style="align-items: center;">
+  <div>
+    <h1 style="font-weight: bold; color: orange;">Présentation du jeu</h1>
+    <p>ICO est un jeu de stratégie et de déduction sociale qui promet des parties riches en rebondissements et en interactions. Chaque joueur joue un rôle actif, et les mécanismes permettent des alliances et des retournements de situation jusqu'à la dernière seconde !</p>
+    <p>Caractéristiques du jeu :</p>
+    <ul>
+      <li>Joueurs : 4 à 10</li>
+      <li>Durée moyenne : 30 à 45 minutes</li>
+      <li>Âge recommandé : 12 ans et plus</li>
+      <li>Type de jeu : Stratégie & Déduction</li>
+    </ul>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="{{asset('images/9.png')}}" class="w-75">
+  </div>
+</div>
 </section>
-<section  style="background:white;">
-<h1>Comment jouer ?</h1>
-<p>Étapes clés du jeu :</p>
+<section  style="background:white;" class="mx-3">
+<div class="d-flex" style="align-items: center;">
+  <div style="">
+    <img src="{{asset('images/8.png')}}" class="w-75">
+  </div>
+  <div>
+    <h1 style="font-weight: bold; color: orange;">Comment jouer ?</h1>
+    <p>Étapes clés du jeu :</p>
 <ol>
 <li>Mise en place : Chaque joueur reçoit une carte rôle secrète.</li>
 <li>Déroulement :  Les joueurs discutent, débattent et utilisent leurs cartes actions pour influencer le cours de la partie.</li>
 <li>Objectif : Coopérer, tromper et survivre jusqu'à la fin sans être éliminé.</li>
 <li>Fin de partie : Une phase finale où tous les joueurs votent pour tenter de démasquer les imposteurs.</li>
 </ol>
+  </div>
+</div>
 </section>
 <section  style="background:white;">
 <h1>Évènements</h1>
