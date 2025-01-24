@@ -6,12 +6,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -37,6 +39,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $shipping_address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $billing_address = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -59,6 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
     }
 
 
@@ -188,6 +197,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getShippingAddress(): ?string
+    {
+        return $this->shipping_address;
+    }
+
+    public function setShippingAddress(?string $shipping_address): static
+    {
+        $this->shipping_address = $shipping_address;
+
+        return $this;
+    }
+
+    public function getBillingAddress(): ?string
+    {
+        return $this->billing_address;
+    }
+
+    public function setBillingAddress(?string $billing_address): static
+    {
+        $this->billing_address = $billing_address;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Order>

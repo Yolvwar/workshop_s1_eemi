@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Mon Panier</h1>
+
+    {% if products is empty %}
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Votre panier est vide</h4>
+            <p>Il semble que vous n'ayez pas encore ajouté de produits à votre panier.</p>
+            <hr>
+            <p class="mb-0">Parcourez notre <a href="{{ path('products') }}" class="alert-link">catalogue</a> pour trouver des produits intéressants.</p>
+        </div>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in products %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.product.price }} €</td>
+                        <td>{{ item.product.price * item.quantity }} €</td>
+                        <td>
+                            <a href="{{ path('app_cart_add', {id: item.product.id}) }}" class="btn btn-sm btn-success">+</a>
+                            <a href="{{ path('app_cart_remove', {id: item.product.id}) }}" class="btn btn-sm btn-warning">-</a>
+                            <a href="{{ path('app_cart_delete', {id: item.product.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Total : {{ total }} €</h3>
+        <button onclick="checkout()" class="btn btn-primary btn-lg mt-3" style="background-color: #007bff; border-color: #007bff;">
+            <i class="bi bi-cart"></i> Acheter
+        </button>
+
+
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var stripe = Stripe("{{ stripePublicKey }}");
+
+    // Exemple de fonction pour créer la session de paiement (à appeler au clic sur un bouton)
+    function checkout() {
+        fetch('/cart/checkout', {
+            method: 'POST',
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (sessionId) {
+            stripe.redirectToCheckout({ sessionId: sessionId.id })
+            .then(function (result) {
+                if (result.error) {
+                    // Gérer les erreurs de paiement
+                    alert(result.error.message);
+                }
+            });
+        });
+    }
+</script>
+{% endblock %}

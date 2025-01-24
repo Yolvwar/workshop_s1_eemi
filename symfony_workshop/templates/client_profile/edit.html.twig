@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les informations personnelles{% endblock %}
+
+{% block body %}
+    <h1 class="m-3">Modifier les informations personnelles</h1>
+
+    {{ form_start(form) }}
+    <div class="row m-4">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="bi bi-person-badge"></i> Informations personnelles
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.firstname) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="bi bi-geo-alt"></i> Adresses
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        {{ form_label(form.adress, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.adress, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.adress) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.town, 'Ville', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.town, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.town) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.zip_code, 'Code postal', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.zip_code, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.zip_code) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.shipping_address, 'Adresse de livraison', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.shipping_address, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.shipping_address) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.billing_address, 'Adresse de facturation', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.billing_address, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.billing_address) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save"></i> Enregistrer les modifications
+        </button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

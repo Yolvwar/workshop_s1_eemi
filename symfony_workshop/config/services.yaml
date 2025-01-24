@@ -3,7 +3,6 @@
 parameters:
     stripe.secret_key: '%env(STRIPE_SECRET_KEY)%'  # Clé secrète Stripe dans .env
     stripe.public_key: '%env(STRIPE_PUBLIC_KEY)%'  # Clé publique Stripe dans .env
-
 services:
     # Default service configuration
     _defaults:
@@ -23,4 +22,3 @@ services:
         arguments:
             $stripeSecretKey: '%stripe.secret_key%'     # Injecte la clé secrète Stripe depuis .env
             $stripePublicKey: '%stripe.public_key%'     # Injecte la clé publique Stripe depuis .env
-

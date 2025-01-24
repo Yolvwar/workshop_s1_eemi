@@ -21,6 +21,12 @@ class Products
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $affiliateLink = null;
+
     /**
      * @var Collection<int, Order>
      */
@@ -57,6 +63,30 @@ class Products
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAffiliateLink(): ?string
+    {
+        return $this->affiliateLink;
+    }
+
+    public function setAffiliateLink(?string $affiliateLink): self
+    {
+        $this->affiliateLink = $affiliateLink;
 
         return $this;
     }

@@ -1,50 +1,40 @@
 <?php
-// src/Service/StripeService.php
 namespace App\Service;
 
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class StripeService
 {
-    private $stripeSecretKey;
-    private $stripePublicKey;
+  private $stripeSecretKey;
+  private $stripePublicKey;
+  private $router;
 
-    public function __construct(string $stripeSecretKey, string $stripePublicKey)
-    {
-        $this->stripeSecretKey = $stripeSecretKey;
-        $this->stripePublicKey = $stripePublicKey;
 
-        // Initialiser Stripe avec la clé secrète
-        Stripe::setApiKey($this->stripeSecretKey);
-    }
+  public function __construct(string $stripeSecretKey, string $stripePublicKey, UrlGeneratorInterface $router)
+  {
+    $this->stripeSecretKey = $stripeSecretKey;
+    $this->stripePublicKey = $stripePublicKey;
+    $this->router = $router;
+    // Initialize Stripe with the secret key
+    Stripe::setApiKey($this->stripeSecretKey);
+  }
 
-    public function createCheckoutSession(int $amount): Session
-    {
-        // Créer une session de paiement avec Stripe Checkout
-        return Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'ICO', // Remplacez par le nom de votre produit
-                        ],
-                        'unit_amount' => $amount, // Montant en centimes
-                    ],
-                    'quantity' => 1,
-                ],
-            ],
-            'mode' => 'payment',
-            'success_url' => 'https://papertoilet.com/', // URL après un paiement réussi
-            'cancel_url' => 'https://www.sitedemerde.com/',   // URL en cas d'annulation
-        ]);
-    }
+  public function createCheckoutSession(array $lineItems): Session
+  {
+    // Create a payment session with Stripe Checkout
+    return Session::create([
+      'payment_method_types' => ['card'],
+      'line_items' => $lineItems,
+      'mode' => 'payment',
+      'success_url' => $this->router->generate('order_success', [], UrlGeneratorInterface::ABSOLUTE_URL), // URL after successful payment
+      'cancel_url' => $this->router->generate('app_cart', [], UrlGeneratorInterface::ABSOLUTE_URL),   // URL in case of cancellation
+    ]);
+  }
 
-    public function getStripePublicKey(): string
-    {
-        return $this->stripePublicKey;
-    }
+  public function getStripePublicKey(): string
+  {
+    return $this->stripePublicKey;
+  }
 }
-

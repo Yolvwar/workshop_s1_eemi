@@ -25,9 +25,13 @@ class Order
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'order', cascade: ['persist', 'remove'])]
     private Collection $orderItems;
 
+    #[ORM\ManyToMany(targetEntity: Products::class, inversedBy: 'orders')]
+    private Collection $products;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,6 +89,30 @@ class Order
                 $orderItem->setOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Products>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduit(Products $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Products $product): self
+    {
+        $this->products->removeElement($product);
 
         return $this;
     }
