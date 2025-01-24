@@ -6,7 +6,7 @@
 {% block body %}
     <h1 class="m-3">Profile</h1>
 
-    <div class="row p-4">
+    <div class="row m-4">
         <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-header">
@@ -31,18 +31,53 @@
                 </div>
             </div>
         </div>
-
-         <a href="{{ path('clientprofile_edit') }}" class="btn btn-primary text-center " style="max-width: 500px;">
-        <i class="bi bi-pencil"></i> Modifier les informations personnelles
-    </a>
     </div>
 
+    <a href="{{ path('clientprofile_edit') }}" class="btn btn-primary text-center" style="max-width: 500px;">
+        <i class="bi bi-pencil"></i> Modifier les informations personnelles
+    </a>
+
     <div class="row p-4">
-    <h2>Commandes passées</h2>
-    <ul>
-        {% for order in orders %}
-            <li>Commande #{{ order.id }} passée le {{ order.orderedAt|date('d/m/Y') }}</li>
-        {% endfor %}
-    </ul>
+        <h2>Commandes passées</h2>
+        {% if orders is empty %}
+            <p>Aucune commande passée.</p>
+        {% else %}
+            <div class="accordion" id="ordersAccordion">
+                {% for order in orders %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ order.id }}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="true" aria-controls="collapse{{ order.id }}">
+                                Commande #{{ order.id }} passée le {{ order.orderedAt|date('d/m/Y') }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ order.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ order.id }}" data-bs-parent="#ordersAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Date de commande :</strong> {{ order.orderedAt|date('d/m/Y H:i') }}</p>
+                                {% set total = 0 %}
+                                {% for item in order.orderItems %}
+                                    {% set total = total + (item.price * item.quantity) %}
+                                {% endfor %}
+                                <p><strong>Total :</strong> {{ total }} €</p>
+                                <h5>Articles commandés :</h5>
+                                <div class="row">
+                                    {% for item in order.orderItems %}
+                                        <div class="col-md-4">
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ item.product.name }}</h5>
+                                                    <p class="card-text">Quantité : {{ item.quantity }}</p>
+                                                    <p class="card-text">Prix unitaire : {{ item.price }} €</p>
+                                                    <p class="card-text">Total : {{ item.price * item.quantity }} €</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
