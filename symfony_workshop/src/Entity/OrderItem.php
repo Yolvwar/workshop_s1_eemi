@@ -20,6 +20,9 @@ class OrderItem
     #[ORM\Column]
     private ?int $quantity = null;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
     #[ORM\ManyToOne(targetEntity: Order::class, inversedBy: 'orderItems')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Order $order = null;
@@ -61,6 +64,18 @@ class OrderItem
     public function setOrder(?Order $order): self
     {
         $this->order = $order;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

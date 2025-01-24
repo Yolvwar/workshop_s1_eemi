@@ -62,4 +62,58 @@ final class CartController extends AbstractController
 
         return $this->redirectToRoute('app_cart');
     }
+
+    #[Route('cart/remove/{id}', name: 'app_cart_remove')]
+    public function remove(Products $product, SessionInterface $session): Response
+    {
+
+        // On recupere l'id du produit
+        $id = $product->getId();
+
+        // On recupere le panier
+        $cart = $session->get('cart', []);
+
+        // On decremente la quantité du produit
+        if (!empty($cart[$id])) {
+            $cart[$id]--;
+
+            // Si la quantité est a 0 on supprime le produit du panier
+            if ($cart[$id] == 0) {
+                unset($cart[$id]);
+            }
+        }
+
+        // On sauvegarde le panier
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('cart/delete/{id}', name: 'app_cart_delete')]
+    public function delete(Products $product, SessionInterface $session): Response
+    {
+
+        // On recupere l'id du produit
+        $id = $product->getId();
+
+        // On recupere le panier
+        $cart = $session->get('cart', []);
+
+        // On supprime le produit du panier
+        unset($cart[$id]);
+
+
+        // On sauvegarde le panier
+        $session->set('cart', $cart);
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('cart/clear', name: 'app_cart_clear')]
+    public function clearAll(SessionInterface $session): Response
+    {
+        $session->remove('cart');
+
+        return $this->redirectToRoute('app_cart');
+    }
 }

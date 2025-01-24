@@ -8,7 +8,12 @@
     <h1>Mon Panier</h1>
 
     {% if products is empty %}
-        <p>Votre panier est vide.</p>
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Votre panier est vide</h4>
+            <p>Il semble que vous n'ayez pas encore ajouté de produits à votre panier.</p>
+            <hr>
+            <p class="mb-0">Parcourez notre <a href="{{ path('products') }}" class="alert-link">catalogue</a> pour trouver des produits intéressants.</p>
+        </div>
     {% else %}
         <table class="table">
             <thead>
@@ -39,7 +44,7 @@
 
         <h3>Total : {{ total }} €</h3>
 
-        <a href="{{ path('app_order_create') }}" class="btn btn-success">
+        <a href="{{ path('order_add')}}" class="btn btn-success">
             <i class="bi bi-cart-check"></i> Passer commande
         </a>
     {% endif %}
