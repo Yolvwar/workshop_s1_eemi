@@ -1,0 +1,9 @@
+06350f,127.0.0.1,GET,https://localhost:8000/adminer,1737500662,04ecc6,404,request
+04ecc6,127.0.0.1,GET,https://localhost:8000/adminer,1737500662,,404,request
+a5903a,127.0.0.1,GET,https://localhost:8000/,1737500662,,404,request
+401af3,127.0.0.1,GET,https://localhost:8000/,1737501463,,404,request
+d6d668,127.0.0.1,GET,https://localhost:8000/,1737501465,,404,request
+7b32a2,127.0.0.1,GET,https://localhost:8000/favicon.ico,1737501466,3f765a,404,request
+3f765a,127.0.0.1,GET,https://localhost:8000/favicon.ico,1737501466,,404,request
+6660e1,127.0.0.1,GET,https://localhost:8000/favicon.ico,1737504091,09fe1a,404,request
+09fe1a,127.0.0.1,GET,https://localhost:8000/favicon.ico,1737504091,,404,request
