@@ -3,18 +3,121 @@
 {% block title %}Hello HomepageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
+<section style="background:white;">
+    <div class="d-flex py-3">
+        <div style="flex: 0 0 40%;"> <!-- Réduit la largeur à 40% -->
+            <img src="{{asset('images/11.png')}}" class="w-100">
+        </div>
+        <div class="bg-secondary" style="flex: 0 0 40%;"> <!-- Réduit la largeur à 40% -->
+            <img src="{{asset('images/10.png')}}" class="w-100">
+        </div>
+    </div>
+    <h1 class="text-center" style="color: #00A1DE; font-weight: bold;">Plongez dans une aventure collective sans élimination</h1>
+</section>
+<section  style="background:white;" class="mx-3">
+<div class="d-flex" style="align-items: center;">
+  <div>
+    <h1 style="font-weight: bold; color: orange;">Présentation du jeu</h1>
+    <p>ICO est un jeu de stratégie et de déduction sociale qui promet des parties riches en rebondissements et en interactions. Chaque joueur joue un rôle actif, et les mécanismes permettent des alliances et des retournements de situation jusqu'à la dernière seconde !</p>
+    <p>Caractéristiques du jeu :</p>
     <ul>
-        <li>Your controller at <code>C:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/src/Controller/HomepageController.php</code></li>
-        <li>Your template at <code>C:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/homepage/index.html.twig</code></li>
+      <li>Joueurs : 4 à 10</li>
+      <li>Durée moyenne : 30 à 45 minutes</li>
+      <li>Âge recommandé : 12 ans et plus</li>
+      <li>Type de jeu : Stratégie & Déduction</li>
     </ul>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img src="{{asset('images/9.png')}}" class="w-75">
+  </div>
 </div>
+</section>
+<section  style="background:white;" class="mx-3">
+<div class="d-flex" style="align-items: center;">
+  <div style="">
+    <img src="{{asset('images/8.png')}}" class="w-75">
+  </div>
+  <div>
+    <h1 style="font-weight: bold; color: orange;">Comment jouer ?</h1>
+    <p>Étapes clés du jeu :</p>
+<ol>
+<li>Mise en place : Chaque joueur reçoit une carte rôle secrète.</li>
+<li>Déroulement :  Les joueurs discutent, débattent et utilisent leurs cartes actions pour influencer le cours de la partie.</li>
+<li>Objectif : Coopérer, tromper et survivre jusqu'à la fin sans être éliminé.</li>
+<li>Fin de partie : Une phase finale où tous les joueurs votent pour tenter de démasquer les imposteurs.</li>
+</ol>
+  </div>
+</div>
+</section>
+<section  style="background:white;">
+<h1 class="text-center" >Évènements</h1>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-4 d-flex flex-column">
+        <div class="mb-2 p-3" style="background: url('{{ asset('images/3.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+        <div class="bg-white"  style="width: fit-content;">
+        <p class="fw-bold">Soirée ICO! adultes</p>
+        <p>dans nos bars partenaires</p>
+        </div>
+        </div>
+        <div class="p-3" style="background: url('{{ asset('images/11.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+        <div class="bg-white " style="width: fit-content;">
+        <p class="fw-bold">Vidéo de présentation</p>
+        <p>par l'équipe ICO!</p>
+        </div>
+        </div>
+      </div>
+      <div class="col-8 p-3" style="background: url('{{ asset('images/4.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+        
+        <div class="bg-white"  style="width: fit-content; margin-left: 10vw;">
+        <p class="fw-bold">Atelier découverte</p>
+        <p>Fếte de lancement</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section  style="background:white;">
+<div class="p-3 d-flex" style="background: url('{{ asset('images/1.png') }}'); background-size: cover; background-position: center; height: 100vh;">
+    <img src={{asset('images/10.png')}} class="w-50" style="background:gray"></img>
+<a href="">Acheter notre jeu -></a>
+</div>
+</section>
+<section  style="background:white;">
+        <h1>Les créateurs</h1>
+        <div class="container mt-4">
+    <div class="d-flex">
+        <!-- Colonne gauche -->
+        <div class="col-4 d-flex">
+            <!-- Première div avec image de fond et flex -->
+            <div class="mb-2 p-3 d-flex" style="background: url('{{ asset('images/3.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+                <div class="bg-white" style="width: fit-content;">
+                    <p class="fw-bold">Soirée ICO! adultes</p>
+                    <p>dans nos bars partenaires</p>
+                </div>
+            </div>
+
+            <!-- Deuxième div avec image de fond et flex -->
+            <div class="p-3 d-flex" style="background: url('{{ asset('images/11.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+                <div class="bg-white" style="width: fit-content;">
+                    <p class="fw-bold">Vidéo de présentation</p>
+                    <p>par l'équipe ICO!</p>
+                </div>
+            </div>
+        </div>
+        <div class="" style="background: url('{{ asset('images/4.png') }}'); background-size: cover; background-position: center; height: 50vh;">
+            <!-- Contenu dans la colonne droite -->
+            <div class="bg-white" style="width: fit-content; margin-left: 10vw;">
+                <p class="fw-bold">Atelier découverte</p>
+                <p>Fête de lancement</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+<footer>
+    <img src={{asset('images/5.png')}}></img>
+</footer>
 {% endblock %}
