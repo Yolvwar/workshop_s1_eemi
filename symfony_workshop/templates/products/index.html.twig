@@ -12,3 +12,31 @@
         {% endfor %}
     </ul>
 {% endblock %}
+{% block javascripts %}
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var stripe = Stripe("{{ stripePublicKey }}");
+
+    // Exemple de fonction pour créer la session de paiement (à appeler au clic sur un bouton)
+    function checkout() {
+        fetch('/produit-achat', {
+            method: 'POST',
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (sessionId) {
+            stripe.redirectToCheckout({ sessionId: sessionId.id })
+            .then(function (result) {
+                if (result.error) {
+                    // Gérer les erreurs de paiement
+                    alert(result.error.message);
+                }
+            });
+        });
+    }
+</script>
+{% endblock %}
+
+
