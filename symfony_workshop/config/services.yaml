@@ -21,9 +21,4 @@ services:
     App\Service\StripeService:
         arguments:
             $stripeSecretKey: '%stripe.secret_key%'     # Injecte la clé secrète Stripe depuis .env
-<<<<<<< HEAD
             $stripePublicKey: '%stripe.public_key%'     # Injecte la clé publique Stripe depuis .env
-=======
-            $stripePublicKey: '%stripe.public_key%'     # Injecte la clé publique Stripe depuis .env
-
->>>>>>> d1f23e01de5661b133c12fb12a35b9529471ce65
