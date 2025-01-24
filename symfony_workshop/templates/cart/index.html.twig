@@ -1,4 +1,3 @@
-{# filepath: /c:/Users/Yoann/Desktop/workshop_s1_eemi/symfony_workshop/templates/cart/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Mon Panier{% endblock %}
@@ -44,9 +43,39 @@
 
         <h3>Total : {{ total }} €</h3>
 
-        <a href="{{ path('order_add')}}" class="btn btn-success">
+        <a href="{{ path('order_add')}}" class="btn btn-success" onclick="checkout()">
             <i class="bi bi-cart-check"></i> Passer commande
         </a>
+                <button onclick="checkout()">Acheter</button>
+
+
     {% endif %}
 </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    var stripe = Stripe("{{ stripePublicKey }}");
+
+    // Exemple de fonction pour créer la session de paiement (à appeler au clic sur un bouton)
+    function checkout() {
+        fetch('/cart/checkout', {
+            method: 'POST',
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (sessionId) {
+            stripe.redirectToCheckout({ sessionId: sessionId.id })
+            .then(function (result) {
+                if (result.error) {
+                    // Gérer les erreurs de paiement
+                    alert(result.error.message);
+                }
+            });
+        });
+    }
+</script>
 {% endblock %}

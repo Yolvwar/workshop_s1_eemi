@@ -8,9 +8,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductsRepository;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\StripeService;
 
 final class CartController extends AbstractController
 {
+
+    private StripeService $stripeService;
+    public function __construct(StripeService $stripeService)
+    {
+        $this->stripeService = $stripeService;
+    }
+
     #[Route('/cart', name: 'app_cart')]
     public function index(SessionInterface $session, ProductsRepository $productsRepository): Response
     {
@@ -31,10 +40,15 @@ final class CartController extends AbstractController
             $total += $product->getPrice() * $quantity;
         }
 
+        // Stripe payment key
+
+        $stripePublicKey = $this->stripeService->getStripePublicKey();
+
         return $this->render('cart/index.html.twig', [
             'controller_name' => 'CartController',
             'products' => $products,
             'total' => $total,
+            'stripePublicKey' => $stripePublicKey,
         ]);
     }
 
@@ -115,5 +129,32 @@ final class CartController extends AbstractController
         $session->remove('cart');
 
         return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('cart/checkout', name: 'app_cart_checkout', methods: ['POST'])]
+    public function checkout(SessionInterface $session, ProductsRepository $productsRepository): JsonResponse
+    {
+        $cart = $session->get('cart', []);
+
+        $lineItems = [];
+
+        foreach ($cart as $id => $quantity) {
+            $product = $productsRepository->find($id);
+
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $product->getName(),
+                    ],
+                    'unit_amount' => $product->getPrice() * 100, // Montant en centimes
+                ],
+                'quantity' => $quantity,
+            ];
+        }
+
+        $session = $this->stripeService->createCheckoutSession($lineItems);
+
+        return new JsonResponse(['id' => $session->id]);
     }
 }
