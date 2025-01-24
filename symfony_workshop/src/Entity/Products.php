@@ -27,6 +27,9 @@ class Products
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $affiliateLink = null;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $image = null;
+
     /**
      * @var Collection<int, Order>
      */
@@ -87,6 +90,18 @@ class Products
     public function setAffiliateLink(?string $affiliateLink): self
     {
         $this->affiliateLink = $affiliateLink;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

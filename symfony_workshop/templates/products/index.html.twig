@@ -3,14 +3,28 @@
 {% block title %}Liste des produits{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
-    <ul>
-        {% for product in products %}
-            <li>
-                <a href="{{ path('products_show', {id: product.id}) }}">{{ product.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container px-4">
+        <h1 class="my-4">Liste des produits</h1>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ path('products_show', {id: product.id}) }}">
+                            <img class="card-img-top" src="{{ asset(product.image ? 'uploads/images/' ~ product.image : 'uploads/images/default-featured-image.jpg') }}" alt="{{ product.name }}_image" style="height: 200px; object-fit: cover;">
+                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{ path('products_show', {id: product.id}) }}">{{ product.name }}</a>
+                            </h4>
+                            <h5>{{ product.price }} €</h5>
+                            <p class="card-text">{{ product.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('products_show', {id: product.id}) }}" class="btn btn-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
-
-
