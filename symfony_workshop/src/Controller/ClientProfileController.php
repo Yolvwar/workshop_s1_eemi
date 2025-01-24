@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Order;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
