@@ -9,14 +9,10 @@
             {% for evenement in evenements %}
                 <div class="col-md-4">
                     <div class="card">
-                        {% if evenement.image %}
-                            <img src="{{ evenement.image }}" class="card-img-top" alt="{{ evenement.nom }}">
-                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ evenement.nom }}</h5>
                             <p class="card-text">{{ evenement.description }}</p>
                             <p><strong>Date :</strong> {{ evenement.date|date('d/m/Y H:i') }}</p>
-                            <p><strong>Lieu :</strong> {{ evenement.lieu }}</p>
                             <a href="#" class="btn btn-primary">Voir plus</a>
                         </div>
                     </div>
